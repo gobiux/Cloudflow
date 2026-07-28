@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflow - QC Overview</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/overview.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo-left">
+      <img src="../Icons/cloud/cloud_24.svg" alt="Cloudflow Logo" class="logo-img">
+      <span class="logo-text">Cloudflow</span>
+    </div>
+    <div class="header-right">
+      <div class="search-wrapper">
+        <img src="../Icons/search/search_24.svg" alt="Search" class="search-icon">
+        <input type="text" class="search" placeholder="Search QC files...">
+      </div>
+      <div class="profile" id="profile">
+        <img src="../Icons/user/user_24.svg" alt="Profile" class="profile-icon">
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="profile-dropdown-header">
+            <span class="profile-dropdown-email">qc@cloudflow.com</span>
+          </div>
+          <div class="profile-dropdown-divider"></div>
+          <a href="#" class="profile-dropdown-item">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span>Support</span>
+          </a>
+          <a href="#" class="profile-dropdown-item logout">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-menu">
+          <a href="qc_overview.html" class="menu-item active" data-page="qc-overview">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>Overview</span>
+          </a>
+          <a href="qc_vault.html" class="menu-item" data-page="qc-vault">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 10H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Vault</span>
+          </a>
+          <a href="qc_gatekeeper.html" class="menu-item" data-page="qc-gatekeeper">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 4H18C19.1 4 20 4.9 20 6V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V6C4 4.9 4.9 4 6 4H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 2H9C8.4 2 8 2.4 8 3V5C8 5.6 8.4 6 9 6H15C15.6 6 16 5.6 16 5V3C16 2.4 15.6 2 15 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 13L11 15L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Gatekeeper</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+    <main class="main-content" id="page-content">
+      <div class="overview">
+        <div class="overview-header">
+          <div>
+            <h1 class="page-title">QC Overview</h1>
+            <p class="page-subtitle">Quality Control dashboard at a glance</p>
+          </div>
+          <div class="header-actions">
+            <span class="update-badge">Updated just now</span>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap kpi-neutral">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 16V4M12 4L8 8M12 4L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-value">152</span>
+              <span class="kpi-label">Files in QC</span>
+            </div>
+            <div class="kpi-trend kpi-trend-up">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>+8%</span>
+            </div>
+          </div>
+          <div class="kpi-card kpi-border-blue">
+            <div class="kpi-icon-wrap kpi-blue">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 7V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="12" cy="16" r="0.75" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-value">42</span>
+              <span class="kpi-label">Pending Review</span>
+            </div>
+            <div class="kpi-trend kpi-trend-neutral">
+              <span>Same</span>
+            </div>
+          </div>
+          <div class="kpi-card kpi-border-amber">
+            <div class="kpi-icon-wrap kpi-amber">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.29 3.86L1.82 18C1.33982 18.8371 1.34589 19.8665 1.78689 20.6987C2.22789 21.5309 3.04515 22.0523 3.95 22.05H20.05C20.9549 22.0523 21.7721 21.5309 22.2131 20.6987C22.6541 19.8665 22.6602 18.8371 22.18 18L13.71 3.86C13.2632 3.03925 12.4172 2.5364 11.5 2.5364C10.5828 2.5364 9.73677 3.03925 9.29 3.86Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 9V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="12" cy="17" r="0.75" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-value">28</span>
+              <span class="kpi-label">Needs Rework</span>
+            </div>
+            <div class="kpi-trend kpi-trend-down">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>-4</span>
+            </div>
+          </div>
+          <div class="kpi-card kpi-border-green">
+            <div class="kpi-icon-wrap kpi-green">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4H18C19.1 4 20 4.9 20 6V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V6C4 4.9 4.9 4 6 4H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 2H9C8.4 2 8 2.4 8 3V5C8 5.6 8.4 6 9 6H15C15.6 6 16 5.6 16 5V3C16 2.4 15.6 2 15 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 13L11 15L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-value">82</span>
+              <span class="kpi-label">Approved</span>
+            </div>
+            <div class="kpi-trend kpi-trend-up">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>+7</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="middle-grid">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">QC Status Distribution</h2>
+              <span class="card-badge">Active Files</span>
+            </div>
+            <div class="card-body">
+              <div class="progress-track">
+                <div class="progress-segment" style="width: 28%; background-color: #6366f1;">
+                  <span class="progress-tooltip">Pending Review</span>
+                </div>
+                <div class="progress-segment" style="width: 18%; background-color: #f59e0b;">
+                  <span class="progress-tooltip">Needs Rework</span>
+                </div>
+                <div class="progress-segment" style="width: 54%; background-color: #10b981;">
+                  <span class="progress-tooltip">Approved</span>
+                </div>
+              </div>
+              <div class="progress-legend">
+                <div class="legend-item">
+                  <span class="legend-dot" style="background-color: #6366f1;"></span>
+                  <span class="legend-label">Pending Review</span>
+                  <span class="legend-value">42</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot" style="background-color: #f59e0b;"></span>
+                  <span class="legend-label">Needs Rework</span>
+                  <span class="legend-value">28</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot" style="background-color: #10b981;"></span>
+                  <span class="legend-label">Approved</span>
+                  <span class="legend-value">82</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Immediate Attention</h2>
+              <span class="card-badge card-badge-alert">2 urgent</span>
+            </div>
+            <div class="card-body feed-list">
+              <div class="feed-item feed-item-critical">
+                <div class="feed-avatar" style="background-color: #fef3c7; color: #92400e;">SM</div>
+                <div class="feed-content">
+                  <div class="feed-head">
+                    <span class="feed-name">Sarah Miller</span>
+                    <span class="feed-time">15m ago</span>
+                  </div>
+                  <p class="feed-text">
+                    <span class="feed-tag feed-tag-amber">Rework</span>
+                    "Missing alpha channel on the hero comp. Needs transparency pass."
+                  </p>
+                </div>
+              </div>
+              <div class="feed-item feed-item-critical">
+                <div class="feed-avatar" style="background-color: #fef3c7; color: #92400e;">JD</div>
+                <div class="feed-content">
+                  <div class="feed-head">
+                    <span class="feed-name">John Doe</span>
+                    <span class="feed-time">22m ago</span>
+                  </div>
+                  <p class="feed-text">
+                    <span class="feed-tag feed-tag-amber">Rework</span>
+                    "The color profile on frame 24 is off by 3 stops. Please fix and re-upload."
+                  </p>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-avatar" style="background-color: #dbeafe; color: #2563eb;">AK</div>
+                <div class="feed-content">
+                  <div class="feed-head">
+                    <span class="feed-name">Alex Kim</span>
+                    <span class="feed-time">1h ago</span>
+                  </div>
+                  <p class="feed-text">
+                    <span class="feed-tag feed-tag-blue">Commented</span>
+                    "Preliminary review looks good — one small tweak on the shadow layer."
+                  </p>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-avatar" style="background-color: #dcfce7; color: #166534;">TR</div>
+                <div class="feed-content">
+                  <div class="feed-head">
+                    <span class="feed-name">Taylor Reed</span>
+                    <span class="feed-time">2h ago</span>
+                  </div>
+                  <p class="feed-text">
+                    <span class="feed-tag feed-tag-green">Approved</span>
+                    "Final export approved. Great work on the revisions."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card table-card">
+          <div class="card-header">
+            <h2 class="card-title">QC Queue</h2>
+            <div class="card-header-right">
+              <span class="card-badge">Last 10 files</span>
+              <button class="btn btn-ghost">View All</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>File Name</th>
+                  <th>QC Status</th>
+                  <th>Last Updated</th>
+                  <th>Quick Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    100001_activia_lid.pdf
+                  </td>
+                  <td><span class="stage-badge stage-amber">Needs Rework</span></td>
+                  <td class="cell-date">15 mins ago</td>
+                  <td><button class="btn btn-primary">Review Now</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    100002_oikos_label.pdf
+                  </td>
+                  <td><span class="stage-badge stage-blue">Pending Review</span></td>
+                  <td class="cell-date">28 mins ago</td>
+                  <td><button class="btn btn-primary">Review Now</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    100003_danette_cup.pdf
+                  </td>
+                  <td><span class="stage-badge stage-blue">Pending Review</span></td>
+                  <td class="cell-date">1h ago</td>
+                  <td><button class="btn btn-primary">Review Now</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    100004_danonino_bandrole.pdf
+                  </td>
+                  <td><span class="stage-badge stage-green">Approved</span></td>
+                  <td class="cell-date">2h ago</td>
+                  <td><button class="btn btn-ghost" disabled>Completed</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    100005_actimel_pickup.pdf
+                  </td>
+                  <td><span class="stage-badge stage-amber">Needs Rework</span></td>
+                  <td class="cell-date">3h ago</td>
+                  <td><button class="btn btn-primary">Review Now</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    100006_yopro_label.pdf
+                  </td>
+                  <td><span class="stage-badge stage-green">Approved</span></td>
+                  <td class="cell-date">4h ago</td>
+                  <td><button class="btn btn-ghost" disabled>Completed</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    100007_alpro_cup.pdf
+                  </td>
+                  <td><span class="stage-badge stage-green">Approved</span></td>
+                  <td class="cell-date">5h ago</td>
+                  <td><button class="btn btn-ghost" disabled>Completed</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    100008_evian_lid.pdf
+                  </td>
+                  <td><span class="stage-badge stage-blue">Pending Review</span></td>
+                  <td class="cell-date">6h ago</td>
+                  <td><button class="btn btn-primary">Review Now</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+<script>
+  (function () {
+    var profile = document.getElementById('profile');
+    var dropdown = document.getElementById('profile-dropdown');
+    if (!profile || !dropdown) return;
+
+    profile.addEventListener('click', function (e) {
+      e.stopPropagation();
+      profile.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!profile.contains(e.target)) {
+        profile.classList.remove('open');
+      }
+    });
+  })();
+</script>
+<script type="module" src="../js/auth.js"></script>
+</body>
+</html>

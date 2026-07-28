@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflow - File Viewer</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/viewer.css">
+</head>
+
+<body>
+  <div class="v-app">
+    <!-- Top bar -->
+    <div class="v-topbar">
+      <button class="v-back" type="button" id="v-back-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19L5 12L12 5"/></svg>
+        <span id="v-back-label">Gatekeeper</span>
+      </button>
+      <span class="v-file-name" id="v-name">file</span>
+
+      <div class="v-topbar-spacer"></div>
+
+      <div class="v-zoom">
+        <button class="v-zoom-btn" id="v-zoom-out" title="Zoom out" type="button">&minus;</button>
+        <span class="v-zoom-label" id="v-zoom-label">100%</span>
+        <button class="v-zoom-btn" id="v-zoom-in" title="Zoom in" type="button">+</button>
+      </div>
+      <button class="v-tool" id="v-fit" type="button">Fit</button>
+      <button class="v-tool" id="v-reset" type="button">Reset</button>
+      <button class="v-tool v-tool-toggle" id="v-pan-toggle" type="button" title="Move / Pan (or hold Space)">Move</button>
+      <button class="v-tool v-approve" id="v-approve" type="button" title="Approve">✓ Approve</button>
+      <button class="v-tool v-reject" id="v-reject" type="button" title="Reject">✕ Reject</button>
+      <div class="profile" id="profile">
+        <img src="../Icons/user/user_24.svg" alt="Profile" class="profile-icon">
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="profile-dropdown-header">
+            <span class="profile-dropdown-email">user@cloudflow.com</span>
+          </div>
+          <div class="profile-dropdown-divider"></div>
+          <a href="#" class="profile-dropdown-item">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span>Support</span>
+          </a>
+          <a href="#" class="profile-dropdown-item logout">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="v-body">
+      <!-- Compare sidebar -->
+      <aside class="v-sidebar">
+        <div class="v-sidebar-title">Compare Files</div>
+
+        <div class="v-compare-group">
+          <div class="v-compare-label"><span class="v-badge-a">A</span> File A · <span id="v-a-name"></span></div>
+          <div class="v-file-card">
+            <div class="v-file-title" id="v-a-title"></div>
+          </div>
+        </div>
+
+        <div class="v-compare-group">
+          <div class="v-compare-label"><span class="v-badge-b">B</span> File B · Compare against</div>
+          <select class="v-select" id="v-select-b">
+            <option value="">— None —</option>
+          </select>
+        </div>
+
+        <!-- Separation Check -->
+        <div class="v-divider"></div>
+        <div class="v-sidebar-title">Separation Check</div>
+        <div class="v-sep-master" id="v-sep-master">
+          <button class="v-sep-master-btn" data-mode="all" type="button">Show all</button>
+          <button class="v-sep-master-btn" data-mode="none" type="button">Hide all</button>
+          <button class="v-sep-master-btn" data-mode="cmyk" type="button">CMYK only</button>
+          <button class="v-sep-master-btn" data-mode="pantone" type="button">Pantones only</button>
+          <button class="v-sep-master-btn" data-mode="reset" type="button">Reset</button>
+        </div>
+        <div class="v-sep-list" id="v-sep-list"></div>
+        <div class="v-sep-shortcuts">
+          Shortcuts: Shift+A show all · Shift+H hide all · Shift+C CMYK · Shift+P Pantones · Shift+R reset
+        </div>
+      </aside>
+
+      <!-- Canvas -->
+      <div class="v-stage" id="v-stage">
+        <div class="v-world" id="v-world">
+          <div class="v-artboard" id="v-board-a">
+            <div class="v-artboard-head"><span class="v-dot a"></span><span class="v-artboard-name">File A</span></div>
+            <div class="v-artboard-body"></div>
+          </div>
+          <div class="v-artboard" id="v-board-b" style="display:none">
+            <div class="v-artboard-head"><span class="v-dot b"></span><span class="v-artboard-name">File B</span></div>
+            <div class="v-artboard-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/data.js"></script>
+  <script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var fileA = window.getFileById(params.get('file')) || window.FILES[0];
+    var fileB = null;
+
+    var ART_W = 360, ART_H = 460, GAP = 60;
+
+    var stage = document.getElementById('v-stage');
+    var world = document.getElementById('v-world');
+    var boardA = document.getElementById('v-board-a');
+    var boardB = document.getElementById('v-board-b');
+    var nameEl = document.getElementById('v-name');
+    var zoomLabel = document.getElementById('v-zoom-label');
+    var selectB = document.getElementById('v-select-b');
+
+    var z = 1, tx = 0, ty = 0;
+    var panOn = false, spaceDown = false, dragging = false, sx = 0, sy = 0, stx = 0, sty = 0;
+
+    function apply() {
+      world.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + z + ')';
+      zoomLabel.textContent = Math.round(z * 100) + '%';
+    }
+
+    function renderBoard(board, file) {
+      board.querySelector('.v-artboard-name').textContent = file.name;
+      board.querySelector('.v-artboard-body').innerHTML = window.artwork(file);
+    }
+
+    function renderSidebarA() {
+      document.getElementById('v-a-title').textContent = fileA.name;
+      document.getElementById('v-a-name').textContent = fileA.name;
+    }
+
+    function populateB() {
+      selectB.innerHTML = '<option value="">— None —</option>' +
+        window.FILES.filter(function (f) { return f.id !== fileA.id; })
+          .map(function (f) { return '<option value="' + f.id + '">' + f.name + '</option>'; }).join('');
+    }
+
+    function layout() {
+      boardA.style.left = '0px';
+      boardA.style.top = '0px';
+      boardA.style.width = ART_W + 'px';
+      boardA.style.height = ART_H + 'px';
+      if (fileB) {
+        boardB.style.display = 'flex';
+        boardB.style.left = (ART_W + GAP) + 'px';
+        boardB.style.top = '0px';
+        boardB.style.width = ART_W + 'px';
+        boardB.style.height = ART_H + 'px';
+      } else {
+        boardB.style.display = 'none';
+      }
+    }
+
+    function contentSize() {
+      return { w: ART_W + (fileB ? GAP + ART_W : 0), h: ART_H };
+    }
+
+    function fit() {
+      var rect = stage.getBoundingClientRect();
+      var c = contentSize();
+      var pad = 60;
+      var s = Math.min((rect.width - pad * 2) / c.w, (rect.height - pad * 2) / c.h);
+      z = Math.max(0.1, Math.min(s, 1.5));
+      tx = (rect.width - c.w * z) / 2;
+      ty = (rect.height - c.h * z) / 2;
+      apply();
+    }
+
+    // Wheel zoom toward cursor (Figma-like)
+    stage.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      var rect = stage.getBoundingClientRect();
+      var cx = e.clientX - rect.left;
+      var cy = e.clientY - rect.top;
+      var factor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
+      var nz = Math.max(0.1, Math.min(5, z * factor));
+      factor = nz / z;
+      tx = cx - (cx - tx) * factor;
+      ty = cy - (cy - ty) * factor;
+      z = nz;
+      apply();
+    }, { passive: false });
+
+    // Pan: drag anywhere on canvas, Space+drag, or middle mouse
+    stage.addEventListener('mousedown', function (e) {
+      var shouldDrag = (panOn || spaceDown) && e.button === 0; // left click with pan tool or space
+      shouldDrag = shouldDrag || e.button === 1; // or middle click
+      if (!shouldDrag) return;
+      dragging = true; sx = e.clientX; sy = e.clientY; stx = tx; sty = ty;
+      stage.classList.add('dragging');
+    });
+    window.addEventListener('mousemove', function (e) {
+      if (!dragging) return;
+      tx = stx + (e.clientX - sx);
+      ty = sty + (e.clientY - sy);
+      apply();
+    });
+    window.addEventListener('mouseup', function () { dragging = false; stage.classList.remove('dragging'); });
+
+    window.addEventListener('keydown', function (e) {
+      if (e.code === 'Space' && !spaceDown) { spaceDown = true; stage.classList.add('panning'); e.preventDefault(); }
+      if (e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        var tag = (e.target && e.target.tagName) || '';
+        if (!/^(INPUT|SELECT|TEXTAREA)$/.test(tag)) {
+          switch (e.key.toLowerCase()) {
+            case 'a': applyMaster('all'); e.preventDefault(); break;
+            case 'h': applyMaster('none'); e.preventDefault(); break;
+            case 'c': applyMaster('cmyk'); e.preventDefault(); break;
+            case 'p': applyMaster('pantone'); e.preventDefault(); break;
+            case 'r': applyMaster('reset'); e.preventDefault(); break;
+          }
+        }
+      }
+    });
+    window.addEventListener('keyup', function (e) {
+      if (e.code === 'Space') { spaceDown = false; if (!panOn) stage.classList.remove('panning'); }
+    });
+
+    var panToggle = document.getElementById('v-pan-toggle');
+    panToggle.addEventListener('click', function () {
+      panOn = !panOn;
+      panToggle.classList.toggle('active', panOn);
+      stage.classList.toggle('panning', panOn);
+    });
+
+    function zoomBy(factor) {
+      var rect = stage.getBoundingClientRect();
+      var cx = rect.width / 2, cy = rect.height / 2;
+      var nz = Math.max(0.1, Math.min(5, z * factor));
+      factor = nz / z;
+      tx = cx - (cx - tx) * factor;
+      ty = cy - (cy - ty) * factor;
+      z = nz;
+      apply();
+    }
+
+    document.getElementById('v-zoom-in').addEventListener('click', function () { zoomBy(1.2); });
+    document.getElementById('v-zoom-out').addEventListener('click', function () { zoomBy(1 / 1.2); });
+    document.getElementById('v-fit').addEventListener('click', fit);
+    document.getElementById('v-reset').addEventListener('click', function () {
+      z = 1;
+      var rect = stage.getBoundingClientRect();
+      var c = contentSize();
+      var pad = 60;
+      tx = (rect.width - c.w * z) / 2;
+      ty = (rect.height - c.h * z) / 2;
+      apply();
+    });
+
+    selectB.addEventListener('change', function () {
+      var id = selectB.value;
+      fileB = id ? window.getFileById(id) : null;
+      updateSepArtwork();
+      layout();
+      fit();
+    });
+
+    // ── Separation Check ──────────────────────────────────────
+    var SEP_ORDER = [
+      { type: 'cmyk', title: 'CMYK' },
+      { type: 'pantone', title: 'Pantones' },
+      { type: 'spot', title: 'Spot Colors' },
+      { type: 'white', title: 'White' },
+      { type: 'varnish', title: 'Varnish' }
+    ];
+
+    var sepState = {};
+
+    function buildSepState(file) {
+      var state = {};
+      (file.separations || []).forEach(function (s) {
+        state[s.name] = {
+          visible: true,
+          opacity: s.opacity != null ? s.opacity : 1
+        };
+      });
+      return state;
+    }
+
+    function renderSeparations(file) {
+      var list = document.getElementById('v-sep-list');
+      var seps = file.separations || [];
+      if (!seps.length) { list.innerHTML = ''; return; }
+
+      var html = '';
+      SEP_ORDER.forEach(function (g) {
+        var group = seps.filter(function (s) { return s.type === g.type; });
+        if (!group.length) return;
+        html += '<div class="v-sep-section">' + g.title + '</div>';
+        group.forEach(function (s) {
+          html += sepItemHtml(s.name, s);
+        });
+      });
+
+      list.innerHTML = html;
+    }
+
+    function sepItemHtml(key, s) {
+      var st = sepState[key] || { visible: false, opacity: 1 };
+      var pct = Math.round((st.opacity == null ? 1 : st.opacity) * 100);
+      return '<div class="v-sep-item" data-key="' + key + '">' +
+        '<span class="v-sep-swatch" style="background:' + s.color + '"></span>' +
+        '<div class="v-sep-info">' +
+          '<span class="v-sep-name">' + s.name + '</span>' +
+          '<input type="range" class="v-sep-opacity" min="0" max="100" value="' + pct + '" data-key="' + key + '">' +
+        '</div>' +
+        '<button class="v-sep-eye' + (st.visible ? ' on' : '') + '" data-key="' + key + '" type="button">' +
+          (st.visible ? eyeSvgOpen() : eyeSvgClosed()) +
+        '</button>' +
+      '</div>';
+    }
+
+    function eyeSvgOpen() {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+    }
+
+    function eyeSvgClosed() {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+    }
+
+    function updateEyeButton(btn, on) {
+      btn.classList.toggle('on', on);
+      btn.innerHTML = on ? eyeSvgOpen() : eyeSvgClosed();
+    }
+
+    function applyMaster(mode) {
+      var seps = fileA.separations || [];
+      seps.forEach(function (s) {
+        var st = sepState[s.name];
+        if (!st) return;
+        if (mode === 'all') {
+          st.visible = true;
+          st.opacity = 1;
+        } else if (mode === 'none') {
+          st.visible = false;
+        } else if (mode === 'cmyk') {
+          st.visible = s.type === 'cmyk';
+          if (st.visible && st.opacity === 0) st.opacity = 1;
+        } else if (mode === 'pantone') {
+          st.visible = s.type === 'pantone';
+          if (st.visible && st.opacity === 0) st.opacity = 1;
+        } else if (mode === 'reset') {
+          st.visible = true;
+          st.opacity = s.opacity != null ? s.opacity : 1;
+        }
+      });
+      renderSeparations(fileA);
+      updateSepArtwork();
+    }
+
+    document.getElementById('v-sep-master').addEventListener('click', function (e) {
+      var btn = e.target.closest('.v-sep-master-btn');
+      if (!btn) return;
+      applyMaster(btn.getAttribute('data-mode'));
+    });
+
+    document.getElementById('v-sep-list').addEventListener('click', function (e) {
+      var slider = e.target.closest('.v-sep-opacity');
+      if (slider) return;
+      var item = e.target.closest('.v-sep-item');
+      var eye = e.target.closest('.v-sep-eye');
+      if (!item && !eye) return;
+      var key = eye ? eye.getAttribute('data-key') : item.getAttribute('data-key');
+      if (!key || !sepState[key]) return;
+      sepState[key].visible = !sepState[key].visible;
+      if (sepState[key].visible && sepState[key].opacity === 0) sepState[key].opacity = 1;
+      renderSeparations(fileA);
+      updateSepArtwork();
+    });
+
+    document.getElementById('v-sep-list').addEventListener('input', function (e) {
+      var slider = e.target.closest('.v-sep-opacity');
+      if (!slider) return;
+      var key = slider.getAttribute('data-key');
+      if (!key || !sepState[key]) return;
+      var val = parseInt(slider.value, 10);
+      sepState[key].opacity = val / 100;
+      if (val > 0 && !sepState[key].visible) sepState[key].visible = true;
+      if (val === 0) sepState[key].visible = false;
+
+      var item = slider.closest('.v-sep-item');
+      if (item) updateEyeButton(item.querySelector('.v-sep-eye'), sepState[key].visible);
+      updateSepArtwork();
+    });
+
+    function fileStateFromSource(file, sourceState) {
+      var seps = file.separations || [];
+      var state = {};
+      var anyVisible = false;
+      seps.forEach(function (s) {
+        var src = sourceState[s.name];
+        var visible = src ? src.visible : false;
+        var opacity = src && src.opacity != null ? src.opacity : (s.opacity != null ? s.opacity : 1);
+        if (visible) anyVisible = true;
+        state[s.name] = { visible: visible, opacity: opacity };
+      });
+      if (!anyVisible) {
+        seps.forEach(function (s) {
+          state[s.name] = { visible: true, opacity: s.opacity != null ? s.opacity : 1 };
+        });
+      }
+      return state;
+    }
+
+    function updateSepArtwork() {
+      renderBoardWithSeps(boardA, fileA, sepState);
+      if (fileB) {
+        var bState = fileStateFromSource(fileB, sepState);
+        renderBoardWithSeps(boardB, fileB, bState);
+      }
+    }
+
+    function renderBoardWithSeps(board, file, state) {
+      board.querySelector('.v-artboard-name').textContent = file.name;
+      board.querySelector('.v-artboard-body').innerHTML = window.artwork(file, null, state);
+    }
+
+    // Approve/Reject button functionality
+    document.getElementById('v-approve').addEventListener('click', function() {
+      alert('File approved successfully!');
+    });
+
+    document.getElementById('v-reject').addEventListener('click', function() {
+      alert('File rejected successfully!');
+    });
+
+    // Init
+    sepState = buildSepState(fileA);
+    renderBoard(boardA, fileA);
+    renderSidebarA();
+    populateB();
+    renderSeparations(fileA);
+    updateSepArtwork();
+    layout();
+    fit();
+  })();
+</script>
+
+  <script>
+  (function () {
+    var profile = document.getElementById('profile');
+    var dropdown = document.getElementById('profile-dropdown');
+    if (!profile || !dropdown) return;
+
+    profile.addEventListener('click', function (e) {
+      e.stopPropagation();
+      profile.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!profile.contains(e.target)) {
+        profile.classList.remove('open');
+      }
+    });
+  })();
+  </script>
+
+  <script>
+  // Dynamic back button — respects ?from=qc_gatekeeper, falls back to gatekeeper.html
+  (function () {
+    var btn = document.getElementById('v-back-btn');
+    var label = document.getElementById('v-back-label');
+    if (!btn) return;
+
+    var params = new URLSearchParams(window.location.search);
+    var from = params.get('from');
+    var backUrl;
+    if (from === 'qc_gatekeeper') {
+      backUrl = 'qc_gatekeeper.html';
+      label.textContent = 'QC Gatekeeper';
+    } else {
+      backUrl = 'gatekeeper.html';
+      label.textContent = 'Gatekeeper';
+    }
+
+    btn.addEventListener('click', function () {
+      window.location.href = backUrl;
+    });
+  })();
+  </script>
+<script type="module" src="../js/auth.js"></script>
+</body>
+</html>

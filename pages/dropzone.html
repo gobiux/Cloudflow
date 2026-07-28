@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflow - Dropzone</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dropzone.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo-left">
+      <img src="../Icons/cloud/cloud_24.svg" alt="Cloudflow Logo" class="logo-img">
+      <span class="logo-text">Cloudflow</span>
+    </div>
+    <div class="header-right">
+      <div class="search-wrapper">
+        <img src="../Icons/search/search_24.svg" alt="Search" class="search-icon">
+        <input type="text" class="search" placeholder="Search Job...">
+      </div>
+      <div class="profile" id="profile">
+        <img src="../Icons/user/user_24.svg" alt="Profile" class="profile-icon">
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="profile-dropdown-header">
+            <span class="profile-dropdown-email">user@cloudflow.com</span>
+          </div>
+          <div class="profile-dropdown-divider"></div>
+          <a href="#" class="profile-dropdown-item">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span>Support</span>
+          </a>
+          <a href="#" class="profile-dropdown-item logout">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-menu">
+          <a href="overview.html" class="menu-item" data-page="overview">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>Overview</span>
+          </a>
+          <a href="vault.html" class="menu-item" data-page="vault">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 10H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Vault</span>
+          </a>
+          <a href="dropzone.html" class="menu-item active" data-page="dropzone">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 16V4M12 4L8 8M12 4L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Dropzone</span>
+          </a>
+          <a href="gatekeeper.html" class="menu-item" data-page="gatekeeper">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 4H18C19.1 4 20 4.9 20 6V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V6C4 4.9 4.9 4 6 4H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 2H9C8.4 2 8 2.4 8 3V5C8 5.6 8.4 6 9 6H15C15.6 6 16 5.6 16 5V3C16 2.4 15.6 2 15 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 13L11 15L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Gatekeeper</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+    <main class="main-content" id="page-content">
+      <div class="dropzone">
+        <div class="overview-header">
+          <div>
+            <h1 class="page-title">Dropzone</h1>
+            <p class="page-subtitle">Upload and organize your production files</p>
+          </div>
+        </div>
+
+        <div class="dz-selection">
+          <div class="dz-option active" data-dz="deliverable">
+            <div class="dz-option-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M12 4L8 8M12 4L16 8"/><path d="M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17"/></svg>
+            </div>
+            <div class="dz-option-text">
+              <span class="dz-option-label">Deliverable Asset</span>
+              <span class="dz-option-desc">Final worked file</span>
+            </div>
+          </div>
+          <div class="dz-option" data-dz="reference">
+            <div class="dz-option-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.5309 3.04515 22.0523 3.95 22.05H20.05C20.9549 22.0523 21.7721 21.5309 22.2131 20.6987C22.6541 19.8665 22.6602 18.8371 22.18 18L13.71 3.86C13.2632 3.03925 12.4172 2.5364 11.5 2.5364C10.5828 2.5364 9.73677 3.03925 9.29 3.86Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 10H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="dz-option-text">
+              <span class="dz-option-label">Reference Material</span>
+              <span class="dz-option-desc">Supporting assets</span>
+            </div>
+          </div>
+          <div class="dz-option" data-dz="barcode">
+            <div class="dz-option-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="2" height="16"/><rect x="8" y="4" width="1" height="16"/><rect x="11" y="4" width="3" height="16"/><rect x="16" y="4" width="1" height="16"/><rect x="19" y="4" width="1" height="16"/></svg>
+            </div>
+            <div class="dz-option-text">
+              <span class="dz-option-label">Generate Barcode</span>
+              <span class="dz-option-desc">Item code label</span>
+            </div>
+          </div>
+          <div class="dz-option" data-dz="legend">
+            <div class="dz-option-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4H20V8H4V4Z"/><path d="M4 10H20V14H4V10Z"/><path d="M4 16H15V20H4V16Z"/></svg>
+            </div>
+            <div class="dz-option-text">
+              <span class="dz-option-label">Generate Legend</span>
+              <span class="dz-option-desc">Serial number label</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dz-panels">
+          <!-- Deliverable Asset -->
+          <div class="dz-panel active" id="dz-deliverable">
+            <div class="dz-zone-wrapper">
+              <div class="dz-zone" id="dz-zone-deliverable">
+                <div class="dz-zone-body">
+                  <div class="dz-zone-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M12 4L8 8M12 4L16 8"/><path d="M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17"/></svg>
+                  </div>
+                  <p class="dz-zone-title">Drag &amp; drop your deliverable file here</p>
+                  <p class="dz-zone-hint">or</p>
+                  <button class="dz-zone-browse" type="button">Browse Files</button>
+                  <input type="file" class="dz-file-input" hidden>
+                </div>
+                <div class="dz-progress" style="display:none">
+                  <div class="dz-progress-track"><div class="dz-progress-fill"></div></div>
+                  <p class="dz-progress-text">Uploading…</p>
+                </div>
+              </div>
+              <button class="btn btn-secondary dz-server-btn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z"/><path d="M2 10H22"/></svg>
+                Select from Server Repository
+              </button>
+            </div>
+          </div>
+
+          <!-- Reference Material -->
+          <div class="dz-panel" id="dz-reference">
+            <div class="dz-zone-wrapper">
+              <div class="dz-zone" id="dz-zone-reference">
+                <div class="dz-zone-body">
+                  <div class="dz-zone-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.5309 3.04515 22.0523 3.95 22.05H20.05C20.9549 22.0523 21.7721 21.5309 22.2131 20.6987C22.6541 19.8665 22.6602 18.8371 22.18 18L13.71 3.86C13.2632 3.03925 12.4172 2.5364 11.5 2.5364C10.5828 2.5364 9.73677 3.03925 9.29 3.86Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2V8H20"/></svg>
+                  </div>
+                  <p class="dz-zone-title">Drag &amp; drop your reference files here</p>
+                  <p class="dz-zone-hint">or</p>
+                  <button class="dz-zone-browse" type="button">Browse Files</button>
+                  <input type="file" class="dz-file-input" hidden multiple>
+                </div>
+                <div class="dz-progress" style="display:none">
+                  <div class="dz-progress-track"><div class="dz-progress-fill"></div></div>
+                  <p class="dz-progress-text">Uploading…</p>
+                </div>
+              </div>
+              <button class="btn btn-secondary dz-server-btn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z"/><path d="M2 10H22"/></svg>
+                Attach from Server Assets
+              </button>
+            </div>
+          </div>
+
+          <!-- Generate Barcode -->
+          <div class="dz-panel" id="dz-barcode">
+            <div class="card">
+              <div class="card-header"><h2 class="card-title">Barcode Details</h2></div>
+              <div class="card-body">
+                <div class="dz-form">
+                  <div class="dz-form-row">
+                    <label class="dz-form-label">Item Name</label>
+                    <input class="dz-form-input" type="text" placeholder="e.g. Activia Yogurt Lid" id="barcode-item">
+                  </div>
+                  <div class="dz-form-row">
+                    <label class="dz-form-label">Batch Code</label>
+                    <input class="dz-form-input" type="text" placeholder="e.g. BATCH-2024-001" id="barcode-batch">
+                  </div>
+                  <div class="dz-form-row">
+                    <label class="dz-form-label">SKU Number</label>
+                    <input class="dz-form-input" type="text" placeholder="e.g. SKU-ACT-001" id="barcode-sku">
+                  </div>
+                  <div class="dz-preview" id="barcode-preview">
+                    <p class="dz-preview-placeholder">Barcode preview will appear here</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Generate Legend -->
+          <div class="dz-panel" id="dz-legend">
+            <div class="card">
+              <div class="card-header"><h2 class="card-title">Legend Details</h2></div>
+              <div class="card-body">
+                <div class="dz-form">
+                  <div class="dz-form-row">
+                    <label class="dz-form-label">Serial Number</label>
+                    <input class="dz-form-input" type="text" inputmode="numeric" placeholder="e.g. SN-2407-001" id="legend-serial">
+                    <span class="dz-form-hint">Enter the product serial number to generate the legend label</span>
+                  </div>
+                  <div class="dz-preview" id="legend-preview">
+                    <p class="dz-preview-placeholder">Legend preview will appear here</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Server Repository Modal -->
+        <div class="dz-modal-overlay" id="dz-modal" style="display:none">
+          <div class="dz-modal">
+            <div class="dz-modal-header">
+              <h3>Select from Server Repository</h3>
+              <button class="dz-modal-close" type="button">&times;</button>
+            </div>
+            <div class="dz-modal-body">
+              <div class="dz-server-list">
+                <div class="dz-server-item dz-server-folder-item" data-path="/projects">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z"/><path d="M2 10H22"/></svg>
+                  <span>Projects</span>
+                </div>
+                <div class="dz-server-item dz-server-folder-item" data-path="/projects/activia" style="padding-left:2rem">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z"/><path d="M2 10H22"/></svg>
+                  <span>Activia</span>
+                </div>
+                <div class="dz-server-item selected" data-path="/projects/activia/100001_activia_lid.pdf" style="padding-left:3.5rem">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"/><path d="M14 2V8H20"/></svg>
+                  <span>100001_activia_lid.pdf</span>
+                </div>
+                <div class="dz-server-item" data-path="/projects/activia/artwork_activia_lid_final.ai" style="padding-left:3.5rem">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"/><path d="M14 2V8H20"/></svg>
+                  <span>artwork_activia_lid_final.ai</span>
+                </div>
+                <div class="dz-server-item dz-server-folder-item" data-path="/projects/oikos" style="padding-left:2rem">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z"/><path d="M2 10H22"/></svg>
+                  <span>Oikos</span>
+                </div>
+                <div class="dz-server-item" data-path="/projects/oikos/100002_oikos_label.pdf" style="padding-left:3.5rem">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"/><path d="M14 2V8H20"/></svg>
+                  <span>100002_oikos_label.pdf</span>
+                </div>
+                <div class="dz-server-item" data-path="/projects/oikos/nutrition_facts.ai" style="padding-left:3.5rem">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"/><path d="M14 2V8H20"/></svg>
+                  <span>nutrition_facts.ai</span>
+                </div>
+                <div class="dz-server-item dz-server-folder-item" data-path="/projects/danette" style="padding-left:2rem">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z"/><path d="M2 10H22"/></svg>
+                  <span>Danette</span>
+                </div>
+                <div class="dz-server-item" data-path="/projects/danette/cup_render.png" style="padding-left:3.5rem">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/></svg>
+                  <span>cup_render.png</span>
+                </div>
+              </div>
+            </div>
+            <div class="dz-modal-footer">
+              <button class="btn btn-ghost dz-modal-cancel" type="button">Cancel</button>
+              <button class="btn btn-primary dz-modal-select" type="button">Select File</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dz-submit-bar">
+          <button class="btn btn-primary dz-generate-btn" id="dz-generate-btn" type="button" style="display:none;">Generate</button>
+          <button class="btn btn-primary dz-submit-btn" id="dz-submit-btn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12H19"/><path d="M12 5L19 12L12 19"/></svg>
+            Submit
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+  (function () {
+    // --- Option tab switching ---
+    var options = document.querySelectorAll('.dz-option');
+    var panels = document.querySelectorAll('.dz-panel');
+    var generateBtn = document.getElementById('dz-generate-btn');
+    var submitBtn = document.getElementById('dz-submit-btn');
+
+    function syncButtons(key) {
+      if (generateBtn) generateBtn.style.display = (key === 'barcode' || key === 'legend') ? '' : 'none';
+      if (submitBtn) submitBtn.style.display = (key === 'deliverable' || key === 'reference') ? '' : 'none';
+    }
+
+    options.forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        var key = opt.getAttribute('data-dz');
+        options.forEach(function (o) { o.classList.remove('active'); });
+        opt.classList.add('active');
+        panels.forEach(function (p) {
+          p.classList.toggle('active', p.id === 'dz-' + key);
+        });
+        syncButtons(key);
+      });
+    });
+
+    var initialOpt = document.querySelector('.dz-option.active');
+    if (initialOpt) syncButtons(initialOpt.getAttribute('data-dz'));
+
+    // --- Drag & drop + browse per zone ---
+    document.querySelectorAll('.dz-zone').forEach(function (zone) {
+      var input = zone.querySelector('.dz-file-input');
+      var browse = zone.querySelector('.dz-zone-browse');
+      if (browse) {
+        browse.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (input) input.click();
+        });
+      }
+      zone.addEventListener('click', function () { if (input) input.click(); });
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        zone.addEventListener(ev, function (e) { e.preventDefault(); zone.classList.add('dragging'); });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        zone.addEventListener(ev, function (e) { e.preventDefault(); zone.classList.remove('dragging'); });
+      });
+      zone.addEventListener('drop', function (e) {
+        var files = e.dataTransfer && e.dataTransfer.files;
+        if (files && files.length) attachFile(zone, files[0]);
+      });
+      if (input) {
+        input.addEventListener('change', function () {
+          if (input.files && input.files.length) attachFile(zone, input.files[0]);
+        });
+      }
+    });
+
+    function attachFile(zone, file) {
+      zone.classList.add('has-file');
+      var progress = zone.querySelector('.dz-progress');
+      if (progress) progress.style.display = 'block';
+      var fill = progress ? progress.querySelector('.dz-progress-fill') : null;
+      var text = progress ? progress.querySelector('.dz-progress-text') : null;
+      var pct = 0;
+      var timer = setInterval(function () {
+        pct += 12;
+        if (pct > 100) pct = 100;
+        if (fill) fill.style.width = pct + '%';
+        if (text) text.textContent = (pct < 100 ? 'Uploading ' + pct + '%' : file.name + ' uploaded');
+        if (pct >= 100) clearInterval(timer);
+      }, 120);
+    }
+
+    // --- Server repository modal ---
+    var modal = document.getElementById('dz-modal');
+    if (modal) {
+      document.querySelectorAll('.dz-server-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { modal.style.display = 'flex'; });
+      });
+      modal.querySelectorAll('.dz-modal-close, .dz-modal-cancel').forEach(function (b) {
+        b.addEventListener('click', function () { modal.style.display = 'none'; });
+      });
+      modal.addEventListener('click', function (e) { if (e.target === modal) modal.style.display = 'none'; });
+      modal.querySelectorAll('.dz-server-item').forEach(function (item) {
+        item.addEventListener('click', function () {
+          modal.querySelectorAll('.dz-server-item').forEach(function (i) { i.classList.remove('selected'); });
+          item.classList.add('selected');
+        });
+      });
+      var selectBtn = modal.querySelector('.dz-modal-select');
+      if (selectBtn) {
+        selectBtn.addEventListener('click', function () {
+          modal.style.display = 'none';
+          var chosen = modal.querySelector('.dz-server-item.selected');
+          var delZone = document.getElementById('dz-zone-deliverable');
+          if (chosen && delZone) {
+            delZone.classList.add('has-file');
+            var prog = delZone.querySelector('.dz-progress');
+            if (prog) prog.style.display = 'block';
+            var t = delZone.querySelector('.dz-progress-text');
+            if (t) t.textContent = chosen.querySelector('span').textContent + ' attached';
+          }
+        });
+      }
+    }
+
+    // --- Generate (single CTA for Barcode / Legend) ---
+    function showPreview(id, html) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = html;
+      el.classList.add('show');
+    }
+
+    if (generateBtn) {
+      generateBtn.addEventListener('click', function () {
+        var activePanel = document.querySelector('.dz-panel.active');
+        var key = activePanel ? activePanel.id.replace('dz-', '') : '';
+        if (key === 'barcode') {
+          var item = document.getElementById('barcode-item').value || '—';
+          var batch = document.getElementById('barcode-batch').value || '—';
+          var sku = document.getElementById('barcode-sku').value || '—';
+          showPreview('barcode-preview',
+            '<div style="font-family:monospace;font-size:1.5rem;letter-spacing:3px;color:#0f172a;">|| | ||| | || |</div>' +
+            '<div style="margin-top:0.5rem;font-weight:600;color:#0f172a;">' + item + '</div>' +
+            '<div style="font-size:0.75rem;color:#64748b;">' + batch + ' · ' + sku + '</div>');
+        } else if (key === 'legend') {
+          var serial = document.getElementById('legend-serial').value || '—';
+          showPreview('legend-preview',
+            '<div style="font-weight:700;letter-spacing:2px;color:#0f172a;">LEGEND</div>' +
+            '<div style="margin-top:0.5rem;font-weight:600;color:#0f172a;">' + serial + '</div>');
+        }
+      });
+    }
+
+    // --- Submit (Deliverable / Reference) ---
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function () {
+        var original = submitBtn.innerHTML;
+submitBtn.textContent = 'Submitted';
+        setTimeout(function () { submitBtn.innerHTML = original; }, 1800);
+      });
+    }
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var profile = document.getElementById('profile');
+    var dropdown = document.getElementById('profile-dropdown');
+    if (!profile || !dropdown) return;
+
+    profile.addEventListener('click', function (e) {
+      e.stopPropagation();
+      profile.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!profile.contains(e.target)) {
+        profile.classList.remove('open');
+      }
+    });
+  })();
+  </script>
+<script type="module" src="../js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflow - Vault</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/vault.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo-left">
+      <img src="../Icons/cloud/cloud_24.svg" alt="Cloudflow Logo" class="logo-img">
+      <span class="logo-text">Cloudflow</span>
+    </div>
+    <div class="header-right">
+      <div class="search-wrapper">
+        <img src="../Icons/search/search_24.svg" alt="Search" class="search-icon">
+        <input type="text" class="search" placeholder="Search Job...">
+      </div>
+      <div class="profile" id="profile">
+        <img src="../Icons/user/user_24.svg" alt="Profile" class="profile-icon">
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="profile-dropdown-header">
+            <span class="profile-dropdown-email">user@cloudflow.com</span>
+          </div>
+          <div class="profile-dropdown-divider"></div>
+          <a href="#" class="profile-dropdown-item">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span>Support</span>
+          </a>
+          <a href="#" class="profile-dropdown-item logout">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-menu">
+          <a href="overview.html" class="menu-item" data-page="overview">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>Overview</span>
+          </a>
+          <a href="vault.html" class="menu-item active" data-page="vault">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 10H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Vault</span>
+          </a>
+          <a href="dropzone.html" class="menu-item" data-page="dropzone">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 16V4M12 4L8 8M12 4L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Dropzone</span>
+          </a>
+          <a href="gatekeeper.html" class="menu-item" data-page="gatekeeper">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 4H18C19.1 4 20 4.9 20 6V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V6C4 4.9 4.9 4 6 4H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 2H9C8.4 2 8 2.4 8 3V5C8 5.6 8.4 6 9 6H15C15.6 6 16 5.6 16 5V3C16 2.4 15.6 2 15 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 13L11 15L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Gatekeeper</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+    <main class="main-content" id="page-content">
+      <div class="vault">
+        <div class="overview-header">
+          <div>
+            <h1 class="page-title">Vault</h1>
+            <p class="page-subtitle">Server project folders and assets</p>
+          </div>
+          <div class="header-actions">
+            <div class="search-wrapper" style="max-width: 240px;">
+              <img src="../Icons/search/search_24.svg" alt="Search" class="search-icon">
+              <input type="text" class="search vault-search" placeholder="Search folders...">
+            </div>
+          </div>
+        </div>
+
+        <div class="vault-grid" id="vault-grid">
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100001_activia_lid</span>
+                  <span class="folder-meta">Activia Yogurt Lid • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-green">Active</span>
+                <span class="folder-date">Updated 2h ago</span>
+                <span class="folder-size">24.6 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Activia_Lid.pdf</span>
+                  <span class="tree-meta">2.1 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Elements</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="tree-name">logo_activia.ai</span>
+                      <span class="tree-meta">0.8 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="tree-name">badge_assets.ai</span>
+                      <span class="tree-meta">1.2 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">pattern_tile.eps</span>
+                      <span class="tree-meta">3.4 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_activia_lid.ai</span>
+                  <span class="tree-meta">4.7 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">5.2 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">3.8 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle_alternative.jpg</span>
+                      <span class="tree-meta">6.1 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_activia.pdf</span>
+                  <span class="tree-meta">1.3 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100002_oikos_label</span>
+                  <span class="folder-meta">Oikos Yogurt Label • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-amber">Pending</span>
+                <span class="folder-date">Updated 5h ago</span>
+                <span class="folder-size">18.2 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Oikos_Label.pdf</span>
+                  <span class="tree-meta">1.8 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Elements</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="tree-name">logo_oikos.ai</span>
+                      <span class="tree-meta">1.1 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="tree-name">nutrition_facts.ai</span>
+                      <span class="tree-meta">2.3 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_oikos_label.ai</span>
+                  <span class="tree-meta">3.5 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">label_mockup_front.png</span>
+                      <span class="tree-meta">4.1 MB</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100003_danette_cup</span>
+                  <span class="folder-meta">Danette Dessert Cup • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-blue">In Progress</span>
+                <span class="folder-date">Updated 1d ago</span>
+                <span class="folder-size">32.1 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Danette_Cup.pdf</span>
+                  <span class="tree-meta">2.4 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_danette_cup.ai</span>
+                  <span class="tree-meta">5.1 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">cup_render.png</span>
+                      <span class="tree-meta">6.8 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">cup_lid_detail.jpg</span>
+                      <span class="tree-meta">2.9 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_danette.pdf</span>
+                  <span class="tree-meta">1.1 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100004_actimel_bottle</span>
+                  <span class="folder-meta">Actimel Yogurt Drink • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-blue">In Progress</span>
+                <span class="folder-date">Updated 3h ago</span>
+                <span class="folder-size">21.4 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Actimel_Bottle.pdf</span>
+                  <span class="tree-meta">1.9 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_actimel_bottle.ai</span>
+                  <span class="tree-meta">4.2 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">5.1 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">4.8 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Actimel_Bottle.pdf</span>
+                  <span class="tree-meta">1.4 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100005_danonino_pouch</span>
+                  <span class="folder-meta">Danonino Kids Yogurt • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-green">Active</span>
+                <span class="folder-date">Updated 6h ago</span>
+                <span class="folder-size">15.9 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Danonino_Pouch.pdf</span>
+                  <span class="tree-meta">1.6 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_danonino_pouch.ai</span>
+                  <span class="tree-meta">3.8 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">4.2 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">3.5 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Danonino_Pouch.pdf</span>
+                  <span class="tree-meta">1.0 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100006_alpro_carton</span>
+                  <span class="folder-meta">Alpro Plant-Based Carton • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-amber">Pending</span>
+                <span class="folder-date">Updated 8h ago</span>
+                <span class="folder-size">28.3 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Alpro_Carton.pdf</span>
+                  <span class="tree-meta">2.2 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_alpro_carton.ai</span>
+                  <span class="tree-meta">5.5 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">6.3 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">5.9 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Alpro_Carton.pdf</span>
+                  <span class="tree-meta">1.5 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100007_evian_bottle</span>
+                  <span class="folder-meta">Evian Water Bottle • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-green">Active</span>
+                <span class="folder-date">Updated 1d ago</span>
+                <span class="folder-size">12.7 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Evian_Bottle.pdf</span>
+                  <span class="tree-meta">1.3 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_evian_bottle.ai</span>
+                  <span class="tree-meta">3.1 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">3.8 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">3.2 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Evian_Bottle.pdf</span>
+                  <span class="tree-meta">0.9 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100008_volvic_bottle</span>
+                  <span class="folder-meta">Volvic Water Bottle • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-blue">In Progress</span>
+                <span class="folder-date">Updated 1d ago</span>
+                <span class="folder-size">19.5 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Volvic_Bottle.pdf</span>
+                  <span class="tree-meta">1.7 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_volvic_bottle.ai</span>
+                  <span class="tree-meta">4.4 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">4.9 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">4.1 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Volvic_Bottle.pdf</span>
+                  <span class="tree-meta">1.1 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100009_yopro_can</span>
+                  <span class="folder-meta">YoPro Protein Drink • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-amber">Pending</span>
+                <span class="folder-date">Updated 2d ago</span>
+                <span class="folder-size">22.8 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_YoPro_Can.pdf</span>
+                  <span class="tree-meta">2.0 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_yopro_can.ai</span>
+                  <span class="tree-meta">4.8 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">5.5 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">4.7 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_YoPro_Can.pdf</span>
+                  <span class="tree-meta">1.3 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100010_danio_cup</span>
+                  <span class="folder-meta">Danio Yogurt Cup • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-green">Active</span>
+                <span class="folder-date">Updated 2d ago</span>
+                <span class="folder-size">17.2 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Danio_Cup.pdf</span>
+                  <span class="tree-meta">1.8 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_danio_cup.ai</span>
+                  <span class="tree-meta">4.0 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">4.6 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">3.9 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Danio_Cup.pdf</span>
+                  <span class="tree-meta">1.2 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100011_lightfree_tub</span>
+                  <span class="folder-meta">Light & Free Yogurt Tub • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-blue">In Progress</span>
+                <span class="folder-date">Updated 3d ago</span>
+                <span class="folder-size">25.1 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_LightFree_Tub.pdf</span>
+                  <span class="tree-meta">2.1 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_lightfree_tub.ai</span>
+                  <span class="tree-meta">5.2 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">6.0 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">5.2 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_LightFree_Tub.pdf</span>
+                  <span class="tree-meta">1.4 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100012_aptamil_tin</span>
+                  <span class="folder-meta">Aptamil Baby Formula • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-amber">Pending</span>
+                <span class="folder-date">Updated 3d ago</span>
+                <span class="folder-size">30.6 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Aptamil_Tin.pdf</span>
+                  <span class="tree-meta">2.3 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_aptamil_tin.ai</span>
+                  <span class="tree-meta">5.7 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">6.6 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">5.8 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Aptamil_Tin.pdf</span>
+                  <span class="tree-meta">1.6 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100013_cowgate_box</span>
+                  <span class="folder-meta">Cow & Gate Baby Box • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-green">Active</span>
+                <span class="folder-date">Updated 4d ago</span>
+                <span class="folder-size">14.3 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_CowGate_Box.pdf</span>
+                  <span class="tree-meta">1.5 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_cowgate_box.ai</span>
+                  <span class="tree-meta">3.6 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">4.0 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">3.4 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_CowGate_Box.pdf</span>
+                  <span class="tree-meta">1.0 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100014_silk_carton</span>
+                  <span class="folder-meta">Silk Almond Milk Carton • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-blue">In Progress</span>
+                <span class="folder-date">Updated 4d ago</span>
+                <span class="folder-size">26.9 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Silk_Carton.pdf</span>
+                  <span class="tree-meta">2.2 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_silk_carton.ai</span>
+                  <span class="tree-meta">5.4 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">6.2 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">5.3 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Silk_Carton.pdf</span>
+                  <span class="tree-meta">1.5 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <div class="folder-left">
+                <svg class="folder-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="folder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M2 10H22" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="folder-info">
+                  <span class="folder-name">100015_mizone_bottle</span>
+                  <span class="folder-meta">Mizone Water Bottle • Danone</span>
+                </div>
+              </div>
+              <div class="folder-right">
+                <span class="stage-badge stage-amber">Pending</span>
+                <span class="folder-date">Updated 5d ago</span>
+                <span class="folder-size">18.0 MB</span>
+              </div>
+            </div>
+            <div class="folder-contents">
+              <div class="file-tree">
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">Brief_Mizone_Bottle.pdf</span>
+                  <span class="tree-meta">1.8 MB</span>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">artwork_mizone_bottle.ai</span>
+                  <span class="tree-meta">4.1 MB</span>
+                </div>
+                <div class="tree-folder">
+                  <div class="tree-folder-header" onclick="toggleTreeFolder(this)">
+                    <svg class="folder-chevron tree-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M2 10H22" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Images</span>
+                  </div>
+                  <div class="tree-folder-contents">
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">render_front.png</span>
+                      <span class="tree-meta">4.7 MB</span>
+                    </div>
+                    <div class="tree-item tree-inset">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" stroke="#64748b" stroke-width="1.5"/>
+                      </svg>
+                      <span class="tree-name">mockup_lifestyle.jpg</span>
+                      <span class="tree-meta">3.8 MB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tree-name">spec_sheet_Mizone_Bottle.pdf</span>
+                  <span class="tree-meta">1.2 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+function toggleFolder(element) {
+  element.parentElement.classList.toggle('open');
+}
+
+function toggleTreeFolder(element) {
+  element.parentElement.classList.toggle('open');
+}
+
+document.querySelectorAll('.menu-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.menu-item').forEach(function(m) { m.classList.remove('active'); });
+    this.classList.add('active');
+  });
+});
+
+// Profile dropdown
+  (function () {
+    var profile = document.getElementById('profile');
+    var dropdown = document.getElementById('profile-dropdown');
+    if (!profile || !dropdown) return;
+
+    profile.addEventListener('click', function (e) {
+      e.stopPropagation();
+      profile.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!profile.contains(e.target)) {
+        profile.classList.remove('open');
+      }
+    });
+  })();
+</script>
+<script type="module" src="../js/auth.js"></script>
+</body>
+
+</html>

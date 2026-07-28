@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflow - Version History</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/gatekeeper.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo-left">
+      <img src="../Icons/cloud/cloud_24.svg" alt="Cloudflow Logo" class="logo-img">
+      <span class="logo-text">Cloudflow</span>
+    </div>
+    <div class="header-right">
+      <div class="search-wrapper">
+        <img src="../Icons/search/search_24.svg" alt="Search" class="search-icon">
+        <input type="text" class="search" placeholder="Search Job...">
+      </div>
+      <div class="profile" id="profile">
+        <img src="../Icons/user/user_24.svg" alt="Profile" class="profile-icon">
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="profile-dropdown-header">
+            <span class="profile-dropdown-email">user@cloudflow.com</span>
+          </div>
+          <div class="profile-dropdown-divider"></div>
+          <a href="#" class="profile-dropdown-item">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span>Support</span>
+          </a>
+          <a href="#" class="profile-dropdown-item logout">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-menu">
+          <a href="overview.html" class="menu-item" data-page="overview">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>Overview</span>
+          </a>
+          <a href="vault.html" class="menu-item" data-page="vault">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 10H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Vault</span>
+          </a>
+          <a href="dropzone.html" class="menu-item" data-page="dropzone">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 16V4M12 4L8 8M12 4L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Dropzone</span>
+          </a>
+          <a href="gatekeeper.html" class="menu-item active" data-page="gatekeeper">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 4H18C19.1 4 20 4.9 20 6V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V6C4 4.9 4.9 4 6 4H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 2H9C8.4 2 8 2.4 8 3V5C8 5.6 8.4 6 9 6H15C15.6 6 16 5.6 16 5V3C16 2.4 15.6 2 15 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 13L11 15L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Gatekeeper</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+    <main class="main-content" id="page-content">
+      <div class="gatekeeper">
+        <div class="overview-header">
+          <div>
+            <button class="btn btn-secondary" type="button" onclick="window.location.href='gatekeeper.html'" style="margin-bottom: 1rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19L5 12L12 5"/></svg>
+              Back to Gatekeeper
+            </button>
+            <h1 class="page-title" id="history-file-name">Version History</h1>
+            <p class="page-subtitle" id="history-file-meta">File details</p>
+          </div>
+        </div>
+
+        <div class="gk-history-page">
+          <div class="gk-history-list" id="gk-history-list">
+            <!-- History items injected here -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../js/data.js"></script>
+  <script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var fileId = params.get('file');
+    var file = window.getFileById(fileId);
+
+    var nameEl = document.getElementById('history-file-name');
+    var metaEl = document.getElementById('history-file-meta');
+    var listEl = document.getElementById('gk-history-list');
+
+    if (!file) {
+      nameEl.textContent = 'File Not Found';
+      metaEl.textContent = 'The requested file could not be found.';
+      return;
+    }
+
+    nameEl.textContent = file.name;
+    metaEl.textContent = file.meta + ' · ' + file.status;
+
+    var history = file.versionHistory || [];
+    history.sort(function(a, b) { return b.version - a.version; });
+
+    var html = '';
+    history.forEach(function(v, index) {
+      var isCurrent = index === 0;
+      var badgeClass = 'v-' + (v.qcStatus || '').toLowerCase();
+      var qcStatus = v.qcStatus || 'Pending';
+      var qcAt = v.qcAt ? ' · ' + v.qcAt : '';
+
+      html +=
+        '<div class="gk-history-item' + (isCurrent ? ' current' : '') + '">' +
+          '<div class="gk-history-header">' +
+            '<div class="gk-history-version">' +
+              '<span class="gk-history-badge ' + badgeClass + '">' + qcStatus + '</span>' +
+              '<span class="gk-history-time">v' + v.version + (isCurrent ? ' (Current)' : '') + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="gk-history-details">' +
+            '<div class="gk-history-detail">' +
+              '<span class="gk-history-label">Uploaded By</span>' +
+              '<span class="gk-history-value">' + (v.uploadedBy || '—') + '</span>' +
+            '</div>' +
+            '<div class="gk-history-detail">' +
+              '<span class="gk-history-label">Uploaded At</span>' +
+              '<span class="gk-history-value">' + (v.uploadedAt || '—') + '</span>' +
+            '</div>' +
+            '<div class="gk-history-detail">' +
+              '<span class="gk-history-label">QC Reviewer</span>' +
+              '<span class="gk-history-value">' + (v.qcReviewer || '—') + '</span>' +
+            '</div>' +
+            '<div class="gk-history-detail">' +
+              '<span class="gk-history-label">QC Status</span>' +
+              '<span class="gk-history-value ' + badgeClass + '">' + qcStatus + qcAt + '</span>' +
+            '</div>' +
+            '<div class="gk-history-detail">' +
+              '<span class="gk-history-label">Reworked By</span>' +
+              '<span class="gk-history-value">' + (v.reworkedBy || '—') + '</span>' +
+            '</div>' +
+            '<div class="gk-history-detail">' +
+              '<span class="gk-history-label">Next QC</span>' +
+              '<span class="gk-history-value">' + (v.nextQc || '—') + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    });
+
+    if (!html) {
+      html = '<div class="gk-history-item"><p style="color: #94a3b8; text-align: center; padding: 2rem;">No version history available</p></div>';
+    }
+
+    listEl.innerHTML = html;
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var profile = document.getElementById('profile');
+    var dropdown = document.getElementById('profile-dropdown');
+    if (!profile || !dropdown) return;
+
+    profile.addEventListener('click', function (e) {
+      e.stopPropagation();
+      profile.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!profile.contains(e.target)) {
+        profile.classList.remove('open');
+      }
+    });
+  })();
+  </script>
+<script type="module" src="../js/auth.js"></script>
+</body>
+</html>

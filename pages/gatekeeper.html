@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflow - Gatekeeper</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/gatekeeper.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo-left">
+      <img src="../Icons/cloud/cloud_24.svg" alt="Cloudflow Logo" class="logo-img">
+      <span class="logo-text">Cloudflow</span>
+    </div>
+    <div class="header-right">
+      <div class="search-wrapper">
+        <img src="../Icons/search/search_24.svg" alt="Search" class="search-icon">
+        <input type="text" class="search" placeholder="Search Job...">
+      </div>
+      <div class="profile" id="profile">
+        <img src="../Icons/user/user_24.svg" alt="Profile" class="profile-icon">
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="profile-dropdown-header">
+            <span class="profile-dropdown-email">production@cloudflow.com</span>
+            <span class="profile-dropdown-role">Production</span>
+          </div>
+          <div class="profile-dropdown-divider"></div>
+          <a href="#" class="profile-dropdown-item">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span>Support</span>
+          </a>
+          <a href="#" class="profile-dropdown-item logout">
+            <svg class="profile-dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-menu">
+          <a href="overview.html" class="menu-item" data-page="overview">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>Overview</span>
+          </a>
+          <a href="vault.html" class="menu-item" data-page="vault">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 6C2 4.9 2.9 4 4 4H9L11 6H20C21.1 6 22 6.9 22 8V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 10H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Vault</span>
+          </a>
+          <a href="dropzone.html" class="menu-item" data-page="dropzone">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 16V4M12 4L8 8M12 4L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Dropzone</span>
+          </a>
+          <a href="gatekeeper.html" class="menu-item active" data-page="gatekeeper">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 4H18C19.1 4 20 4.9 20 6V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V6C4 4.9 4.9 4 6 4H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 2H9C8.4 2 8 2.4 8 3V5C8 5.6 8.4 6 9 6H15C15.6 6 16 5.6 16 5V3C16 2.4 15.6 2 15 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 13L11 15L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Gatekeeper</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+    <main class="main-content" id="page-content">
+      <div class="gatekeeper">
+        <div class="overview-header">
+          <div>
+            <h1 class="page-title">Gatekeeper</h1>
+            <p class="page-subtitle">Review and verify production files — open a file in the viewer to check it before sending to QC</p>
+          </div>
+          <div class="header-actions">
+            <span class="update-badge" id="gk-queue-count">— files in queue</span>
+          </div>
+        </div>
+
+        <div class="gk-split">
+          <!-- LEFT: Production file queue -->
+          <div class="gk-left">
+            <div class="gk-queue-header">
+              <h2 class="gk-card-title">Production Files</h2>
+              <span class="card-badge" id="gk-queue-badge">Queue</span>
+            </div>
+            <div class="gk-queue list-view" id="gk-queue">
+              <!-- file cards injected by JS -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../js/data.js"></script>
+  <script type="module" src="../js/auth.js"></script>
+  <script>
+  (function () {
+    // FILES and artwork() are loaded from data.js
+
+    // --- Render queue ---
+    var queue = document.getElementById('gk-queue');
+    FILES.forEach(function (f) {
+        var card = document.createElement('div');
+        card.className = 'gk-file-card';
+        card.innerHTML =
+          '<div class="gk-file-card-top">' +
+            '<div class="gk-file-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"/><path d="M14 2V8H20"/></svg></div>' +
+            '<div class="gk-file-card-info">' +
+              '<div class="gk-file-card-name">' + f.name + '</div>' +
+              '<div class="gk-file-card-meta">' + f.meta + '</div>' +
+            '</div>' +
+            '<span class="gk-file-card-badge ' + f.statusClass + '">' + f.status + '</span>' +
+            '<a href="history.html?file=' + f.id + '" class="gk-history-btn" title="Version History" aria-label="Version History">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>' +
+            '</a>' +
+          '</div>' +
+          '<button class="btn btn-secondary gk-open-btn" type="button" data-id="' + f.id + '">Open Viewer</button>';
+        queue.appendChild(card);
+      });
+    document.getElementById('gk-queue-count').textContent = FILES.length + ' files in queue';
+    document.getElementById('gk-queue-badge').textContent = FILES.length + ' files';
+
+    queue.addEventListener('click', function (e) {
+      var btn = e.target.closest('.gk-open-btn');
+      if (btn) window.location.href = 'viewer.html?file=' + btn.getAttribute('data-id');
+    });
+
+    // Profile dropdown
+    (function () {
+      var profile = document.getElementById('profile');
+      var dropdown = document.getElementById('profile-dropdown');
+      if (!profile || !dropdown) return;
+
+      profile.addEventListener('click', function (e) {
+        e.stopPropagation();
+        profile.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!profile.contains(e.target)) {
+          profile.classList.remove('open');
+        }
+      });
+    })();
+  })();
+  </script>
+</body>
+</html>

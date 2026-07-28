@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflow — Sign In</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+  <main class="login-wrap">
+    <div class="login-card">
+      <img src="../Icons/cloud/cloud_48.svg" alt="Cloudflow" class="login-logo">
+      <h1 class="login-title">Cloudflow</h1>
+      <p class="login-subtitle">Sign in to your production workspace</p>
+
+      <form class="login-form" id="login-form" novalidate>
+        <div class="login-field">
+          <label class="login-label" for="login-email">Email</label>
+          <input class="login-input" id="login-email" type="email" placeholder="you@danone.com" autocomplete="username">
+        </div>
+        <div class="login-field">
+          <label class="login-label" for="login-password">Password</label>
+          <input class="login-input" id="login-password" type="password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <button class="login-btn" type="submit">Sign In</button>
+      </form>
+
+      <p class="login-footer">Cloudflow &mdash; for the Production &amp; QC teams</p>
+    </div>
+  </main>
+
+  <!-- Team chooser popup -->
+  <div class="login-modal-overlay" id="login-modal" style="display:none">
+    <div class="login-modal" role="dialog" aria-modal="true" aria-label="Choose your workspace">
+      <button class="login-modal-close" type="button" id="login-modal-close" aria-label="Close">&times;</button>
+      <h2 class="login-modal-title">Where would you like to go?</h2>
+      <p class="login-modal-sub">Select your team workspace to continue</p>
+
+      <div class="login-modal-actions">
+        <button class="login-team-btn login-team-production" type="button" data-target="overview.html">
+          <span class="login-team-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 16V4M12 4L8 8M12 4L16 8"/>
+              <path d="M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17"/>
+            </svg>
+          </span>
+          <span class="login-team-text">
+            <span class="login-team-label">Production</span>
+            <span class="login-team-desc">Upload &amp; manage deliverables</span>
+          </span>
+        </button>
+
+        <button class="login-team-btn login-team-qc" type="button" data-target="qc_overview.html">
+          <span class="login-team-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </span>
+          <span class="login-team-text">
+            <span class="login-team-label">QC</span>
+            <span class="login-team-badge">QC</span>
+            <span class="login-team-desc">Quality Control Dashboard</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var form = document.getElementById('login-form');
+    var modal = document.getElementById('login-modal');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('login-email').value.trim();
+      var password = document.getElementById('login-password').value;
+      if (!email || !password) {
+        (!email ? document.getElementById('login-email') : document.getElementById('login-password')).focus();
+        return;
+      }
+      modal.style.display = 'flex';
+    });
+
+    document.getElementById('login-modal-close').addEventListener('click', function () {
+      modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    modal.querySelectorAll('.login-team-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.location.href = btn.getAttribute('data-target');
+      });
+    });
+  </script>
+</body>
+
+</html>
