@@ -24,7 +24,9 @@ export default defineConfig({
         dropzone: path.resolve(__dirname, 'pages/dropzone.html'),
         history: path.resolve(__dirname, 'pages/history.html')
       }
-    }
+    },
+    assetsDir: 'assets',
+    copyPublicDir: true
   },
   server: {
     port: 3000,
