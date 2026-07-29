@@ -44,10 +44,6 @@ Cloudflow/
 ├── js/            # JavaScript
 │   ├── data.js          # Shared file data (FILES array, artwork renderer)
 │   └── auth.js          # Authentication utilities
-├── Icons/         # SVG icons
-│   ├── cloud/           # Cloud/logo icons
-│   ├── search/          # Search icons
-│   └── user/            # User/profile icons
 └── pages/         # HTML pages
     ├── index.html
     ├── login.html
