@@ -32,12 +32,13 @@
 
   function logout() {
     clearAuth();
-    window.location.href = 'index.html';
+    // Use absolute path to work from both root and /pages/
+    window.location.href = '/index.html';
   }
 
   function requireAuth() {
     if (!isAuthenticated()) {
-      window.location.href = 'index.html';
+      window.location.href = '/index.html';
       return false;
     }
     return true;
