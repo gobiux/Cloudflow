@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cloudflow — Sign In</title>
-  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="./css/login.css">
 </head>
 
 <body>
   <main class="login-wrap">
     <div class="login-card">
-      <img src="/Icons/cloud/cloud_48.svg" alt="Cloudflow" class="login-logo">
+      <img src="./Icons/cloud/cloud_48.svg" alt="Cloudflow" class="login-logo">
       <h1 class="login-title">Cloudflow</h1>
       <p class="login-subtitle">Sign in to your production workspace</p>
 
@@ -40,7 +40,7 @@
       <p class="login-modal-sub">Select your team workspace to continue</p>
 
       <div class="login-modal-actions">
-        <button class="login-team-btn login-team-production" type="button" data-target="overview.html">
+        <button class="login-team-btn login-team-production" type="button" data-target="pages/overview.html">
           <span class="login-team-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
               stroke-linecap="round" stroke-linejoin="round">
@@ -54,7 +54,7 @@
           </span>
         </button>
 
-        <button class="login-team-btn login-team-qc" type="button" data-target="qc_overview.html">
+        <button class="login-team-btn login-team-qc" type="button" data-target="pages/qc_overview.html">
           <span class="login-team-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
               stroke-linecap="round" stroke-linejoin="round">
@@ -64,7 +64,6 @@
           </span>
           <span class="login-team-text">
             <span class="login-team-label">QC</span>
-            <span class="login-team-badge">QC</span>
             <span class="login-team-desc">Quality Control Dashboard</span>
           </span>
         </button>
@@ -72,7 +71,7 @@
     </div>
   </div>
 
-  <script src="/js/auth.js"></script>
+  <script src="./js/auth.js"></script>
   <script>
     var form = document.getElementById('login-form');
     var modal = document.getElementById('login-modal');
@@ -88,7 +87,7 @@
       try {
         localStorage.setItem('cloudflow_auth', 'true');
         localStorage.setItem('cloudflow_user', JSON.stringify({ email: email }));
-      } catch (err) {}
+      } catch (err) { }
       modal.style.display = 'flex';
     });
 
